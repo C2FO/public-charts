@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  pg-dba:
+  - apiVersion: v1
+    appVersion: 0.1.0
+    created: 2019-02-08T15:13:33.863373595-06:00
+    description: A chart to run the pg-dba as a job in kubernetes
+    digest: 0caf458a29965da794217465fe32d8832b8e6619e17256788b8377720fb5d405
+    name: pg-dba
+    urls:
+    - https://c2fo.io/public-charts/pg-dba-0.1.0.tgz
+    version: 0.1.0
+generated: 2019-02-08T15:13:33.861791728-06:00
