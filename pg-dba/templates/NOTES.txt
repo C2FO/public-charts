@@ -1,0 +1,2 @@
+1. Watch the pg-dba job:
+   watch -n 5 'kubectl -n {{ .Release.Namespace }} get jobs'
