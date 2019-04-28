@@ -1,0 +1,42 @@
+{{- if .Values.cronJob.enabled -}}
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: pg-dba
+  labels:
+    app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+    app.kubernetes.io/instance: {{.Release.Name | quote }}
+    helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+spec:
+  schedule: {{ .Values.cronJob.schedule | quote }}
+  concurrencyPolicy: {{ .Values.cronJob.concurrencyPolicy }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ .Release.Name }}
+          labels:
+            app.kubernetes.io/managed-by: {{.Release.Service | quote }}
+            app.kubernetes.io/instance: {{.Release.Name | quote }}
+            helm.sh/chart: "{{.Chart.Name}}-{{.Chart.Version}}"
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: pg-dba
+            image: {{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}
+            pullPolicy: {{ .Values.image.pullPolicy }}
+            env:
+            - name: POSTGRES_HOST
+              value: {{ .Values.postgres.host }}
+            - name: POSTGRES_DB
+              value: {{ .Values.postgres.db }}
+            - name: POSTGRES_USER
+              value: {{ .Values.postgres.user }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.postgres.pass }}
+            - name: SSL_MODE
+              value: {{ .Values.postgres.sslMode }}
+            resources:   
+              {{ toYaml .Values.resources | nindent 14 }}
+{{- end -}}
