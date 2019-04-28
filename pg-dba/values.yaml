@@ -30,3 +30,9 @@ resources: {}
   # requests:
   #  cpu: 100m
   #  memory: 128Mi
+
+# Timeout configuration for pg-dba. See: https://jonstacks.com/pg-dba/configuration/
+timeouts:
+  analyze: 600
+  vacuum: 600
+  fullVacuum: 600

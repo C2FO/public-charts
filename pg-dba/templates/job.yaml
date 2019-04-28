@@ -38,5 +38,11 @@ spec:
           value: {{ .Values.postgres.pass }}
         - name: SSL_MODE
           value: {{ .Values.postgres.sslMode }}
+        - name: ANALYZE_TIMEOUT_SECONDS
+          value: {{ .Values.timeouts.analyze | quote }}
+        - name: VACUUM_TIMEOUT_SECONDS
+          value: {{ .Values.timeouts.vacuum | quote }}
+        - name: FULL_VACUUM_TIMEOUT_SECONDS
+          value: {{ .Values.timeouts.fullVacuum | quote }}
         resources:
 {{ toYaml .Values.resources | indent 10 }}

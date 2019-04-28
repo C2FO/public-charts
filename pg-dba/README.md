@@ -31,6 +31,9 @@ The following table lists the configuration parameters of the pg-dba Chart and t
 | `postgres.pass`         | The password to use when connecting to postgres            | ''                          |
 | `postgres.sslMode`      | The SSL Mode to use for postgres(require, disable, etc...) | require                     |
 | `resources`             | The resources to give to the pg-dba container              | {}                          |
+| `timeouts.analyze`      | The timeout in seconds for running an analyze.             | `600`                       |
+| `timeouts.vacuum`       | The timeout in seconds for running a vacuum.               | `600`                       |
+| `timeouts.fullVacuum`   | The timeout in seconds for running a full vacuum.          | `600`                       |
 
 
 ## Examples
@@ -41,5 +44,8 @@ helm install --name my-pg-dba c2fo-public/pg-dba \
      --set postgres.db=mydb \
      --set postgres.user=myuser \
      --set postgres.pass=mypass \
-     --set postgres.sslMode=disable
+     --set postgres.sslMode=disable \
+     --set timeouts.analyze=900 \
+     --set timeouts.vacuum=900 \
+     --set timeouts.fullVacuum=900
 ```
