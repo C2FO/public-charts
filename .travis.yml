@@ -1,0 +1,16 @@
+---
+language: C
+sudo: false
+before_install:
+  - wget https://kubernetes-helm.storage.googleapis.com/helm-v2.7.2-linux-amd64.tar.gz
+  - tar xzvf helm-v2.7.2-linux-amd64.tar.gz
+  - mv linux-amd64/helm helm
+  - chmod u+x helm
+  - export PATH="$PATH:${TRAVIS_BUILD_DIR}"
+
+# Don't email the results of the test runs.
+notifications:
+  email: false
+
+script:
+  - make lint
