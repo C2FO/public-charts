@@ -1,5 +1,13 @@
 # pg-dba Helm Chart
 
+- [pg-dba Helm Chart](#pg-dba-Helm-Chart)
+  - [Chart Details](#Chart-Details)
+  - [Installing the Chart](#Installing-the-Chart)
+  - [Configuration](#Configuration)
+  - [Examples](#Examples)
+    - [Kick off a 1 time pg-dba job](#Kick-off-a-1-time-pg-dba-job)
+  - [Running as a kubernetes `CronJob` on a schedule](#Running-as-a-kubernetes-CronJob-on-a-schedule)
+
 
 ## Chart Details
 
@@ -38,6 +46,8 @@ The following table lists the configuration parameters of the pg-dba Chart and t
 
 ## Examples
 
+### Kick off a 1 time pg-dba job
+
 ```
 helm install --name my-pg-dba c2fo-public/pg-dba \
      --set postgres.host=db \
@@ -48,4 +58,17 @@ helm install --name my-pg-dba c2fo-public/pg-dba \
      --set timeouts.analyze=900 \
      --set timeouts.vacuum=900 \
      --set timeouts.fullVacuum=900
+```
+
+## Running as a kubernetes `CronJob` on a schedule
+
+```
+helm install --name my-pg-dba c2fo-public/pg-dba \
+     --set postgres.host=db \
+     --set postgres.db=mydb \
+     --set postgres.user=myuser \
+     --set postgres.pass=mypass \
+     --set postgres.sslMode=disable \
+     --set cronJob.enabled=true \
+     --set cronJob.schedule="0 2 * * 6"
 ```

@@ -36,3 +36,8 @@ timeouts:
   analyze: 600
   vacuum: 600
   fullVacuum: 600
+
+cronJob:
+  enabled: false
+  concurrencyPolicy: Forbid
+  schedule: "0 2 * * 6" # Run every Saturday at 2:00 a.m. UTC = 9:00 CDT
