@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "0.2.0"
 description: A chart to run the pg-dba as a job in kubernetes
 name: pg-dba
-version: 0.2.0
+version: 0.3.0
